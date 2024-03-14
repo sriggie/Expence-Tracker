@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const expenseForm = document.getElementById('expense-form');
     const expenseList = document.getElementById('expense-list');
     const summary = document.getElementById('summary');
+    const expenseChart = document.getElementById('expense-chart').getContext('2d');
 
     // Retrieve expenses from localStorage or initialize empty array
     let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
@@ -24,6 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
             categoryElement.textContent = `${category}: $${total.toFixed(2)}`;
             summary.appendChild(categoryElement);
         }
+
+        // Render chart
+        renderChart(summaryData);
     }
 
     // Function to render expenses list
@@ -68,30 +72,42 @@ document.addEventListener('DOMContentLoaded', () => {
         calculateSummary();
     };
 
-    // Currency converter functionality
-    document.getElementById('convert').addEventListener('click', async () => {
-        const amount = document.getElementById('currency-amount').value;
-        const fromCurrency = document.getElementById('from-currency').value;
-        const toCurrency = document.getElementById('to-currency').value;
-
-        if (fromCurrency === toCurrency) {
-            document.getElementById('converted-amount').textContent = `${amount} ${fromCurrency}`;
-            return;
-        }
-
-        const convertedAmount = await convertCurrency(amount, fromCurrency, toCurrency);
-        document.getElementById('converted-amount').textContent = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
-    });
-
-    // Function to convert currency
-    async function convertCurrency(amount, fromCurrency, toCurrency) {
-        const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
-        const data = await response.json();
-        const exchangeRate = data.rates[toCurrency];
-        return amount * exchangeRate;
+    // Function to render chart
+    function renderChart(data) {
+        const labels = Object.keys(data);
+        const values = Object.values(data);
+        new Chart(expenseChart, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Total Expenses by Category',
+                    data: values,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     }
 
-    // Initial rendering
     renderExpenses();
     calculateSummary();
 });

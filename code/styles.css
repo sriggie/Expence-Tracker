@@ -1,3 +1,4 @@
+/* basic styles unaeza change them to make your project look more dynamic */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -28,6 +29,7 @@ main {
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 th, td {
@@ -40,4 +42,7 @@ th {
     background-color: #f2f2f2;
 }
 
+canvas {
+    margin-top: 20px;
+}
 

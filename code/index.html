@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker Project</title>
+    <title>Expense Tracker Projo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,15 +18,16 @@
             <select id="expense-category" required>
                 <option value="">Select Category</option>
                 <option value="Food">Food</option>
-                <option value="Transport">Transport</option>
-                <option value="Health">Health</option>
+                <option value="Drnks">Drinks</option>
+                <option value="Jaba">Jaba</option>
+                <option value="Tools">Tools</option>
             </select>
             <button type="submit">Add Expense</button>
         </form>
         <table id="expense-table">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Expense Name</th>
                     <th>Amount</th>
                     <th>Category</th>
                     <th>Action</th>
@@ -35,6 +36,7 @@
             <tbody id="expense-list"></tbody>
         </table>
         <div id="summary"></div>
+        <canvas id="expense-chart"></canvas>
     </main>
 
     <footer>
@@ -44,13 +46,14 @@
             <select id="from-currency">
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
                 <option value="KES">KES</option>
             </select>
             <select id="to-currency">
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
                 <option value="KES">KES</option>
-                <!-- Add more currencies as needed -->
             </select>
             <button id="convert">Convert</button>
             <p id="converted-amount"></p>
