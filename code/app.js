@@ -68,6 +68,29 @@ document.addEventListener('DOMContentLoaded', () => {
         calculateSummary();
     };
 
+    // Currency converter functionality
+    document.getElementById('convert').addEventListener('click', async () => {
+        const amount = document.getElementById('currency-amount').value;
+        const fromCurrency = document.getElementById('from-currency').value;
+        const toCurrency = document.getElementById('to-currency').value;
+
+        if (fromCurrency === toCurrency) {
+            document.getElementById('converted-amount').textContent = `${amount} ${fromCurrency}`;
+            return;
+        }
+
+        const convertedAmount = await convertCurrency(amount, fromCurrency, toCurrency);
+        document.getElementById('converted-amount').textContent = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
+    });
+
+    // Function to convert currency
+    async function convertCurrency(amount, fromCurrency, toCurrency) {
+        const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
+        const data = await response.json();
+        const exchangeRate = data.rates[toCurrency];
+        return amount * exchangeRate;
+    }
+
     // Initial rendering
     renderExpenses();
     calculateSummary();

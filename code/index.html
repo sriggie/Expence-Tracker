@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker</title>
+    <title>Expense Tracker Project</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,7 +23,17 @@
             </select>
             <button type="submit">Add Expense</button>
         </form>
-        <div id="expense-list"></div>
+        <table id="expense-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="expense-list"></tbody>
+        </table>
         <div id="summary"></div>
     </main>
 
@@ -34,13 +44,12 @@
             <select id="from-currency">
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
-                <!-- Add more currencies as needed -->
+                <option value="KES">KES</option>
             </select>
             <select id="to-currency">
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
+                <option value="KES">KES</option>
                 <!-- Add more currencies as needed -->
             </select>
             <button id="convert">Convert</button>
