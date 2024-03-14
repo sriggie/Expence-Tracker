@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const expenseList = document.getElementById('expense-list');
     const summary = document.getElementById('summary');
 
-    // fuction for the var to collect io stuff from the local storage you can change it 
+    // Retrieve expenses from localStorage or initialize empty array
     let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
 
     // Function to calculate total expenses by category
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             summaryData[expense.category] += expense.amount;
         });
 
-        // render summary
+        // Render summary
         summary.innerHTML = '';
         for (const category in summaryData) {
             const total = summaryData[category];
@@ -26,16 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // function ya ku render the expences & list them
+    // Function to render expenses list
     function renderExpenses() {
         expenseList.innerHTML = '';
         expenses.forEach((expense, index) => {
-            const row = document.createElement('div');
+            const row = document.createElement('tr');
             row.innerHTML = `
-                <span>${expense.name}</span>
-                <span>$${expense.amount.toFixed(2)}</span>
-                <span>${expense.category}</span>
-                <button onclick="deleteExpense(${index})">Delete</button>
+                <td>${expense.name}</td>
+                <td>$${expense.amount.toFixed(2)}</td>
+                <td>${expense.category}</td>
+                <td><button onclick="deleteExpense(${index})">Delete</button></td>
             `;
             expenseList.appendChild(row);
         });

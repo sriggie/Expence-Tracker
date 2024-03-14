@@ -4,25 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Expense Tracker</h1>
-    <form id="expense-form">
-        <input type="text" id="expense-name" placeholder="Expense Name" required>
-        <input type="number" id="expense-amount" placeholder="Amount" required>
-        <select id="expense-category" required>
-            <option value="">Select Category</option>
-            <option value="Food">Food</option>
-            <option value="Drinks">Drinks</option>
-            <option value="Aluta">Aluta</option>
-            <!-- unaeza add more options  -->
-        </select>
-        <button type="submit">Add Expense</button>
-    </form>
-    <div id="expense-list"></div>
-    <div id="summary"></div>
+    <header>
+        <h1>Expense Tracker</h1>
+    </header>
 
+    <main>
+        <form id="expense-form">
+            <input type="text" id="expense-name" placeholder="Expense Name" required>
+            <input type="number" id="expense-amount" placeholder="Amount" required>
+            <select id="expense-category" required>
+                <option value="">Select Category</option>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Health">Health</option>
+            </select>
+            <button type="submit">Add Expense</button>
+        </form>
+        <div id="expense-list"></div>
+        <div id="summary"></div>
+    </main>
+
+    <footer>
+        <div class="currency-converter">
+            <h2>Currency Converter</h2>
+            <input type="number" id="currency-amount" placeholder="Amount">
+            <select id="from-currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <!-- Add more currencies as needed -->
+            </select>
+            <select id="to-currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <!-- Add more currencies as needed -->
+            </select>
+            <button id="convert">Convert</button>
+            <p id="converted-amount"></p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
